@@ -99,7 +99,6 @@ if(isset($_GET['inquiry_id'])){
                     <label for="message"  id="message-label"></label>
                     <textarea id="message" name="message" rows="4" required> <?php echo !empty($message) ? htmlspecialchars($message) : ''; ?> </textarea>
                 </div>
-
                 <div class="form-group" id="reply-area">
                     <label for="reply" >Your Reply</label>
                     <textarea id="reply" name="reply" rows="4" <?php echo ($mode == 'edit') ? 'required="true"' : ''; ?> > <?php echo !empty($reply) ? htmlspecialchars($reply) : ''; ?> </textarea>
