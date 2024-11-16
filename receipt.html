@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Receipt - Carat live</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+</head>
+
+<body class="app">
+    <div class="receipt-container" style="margin-top: 20px">
+        <h1>Receipt</h1>
+        <p class="receipt-info">
+            <strong>Name:</strong> <span id="name">Nurathrisha Elisa</span><br>
+            <strong>Phone Number:</strong> <span id="phone-no">012-345678</span><br>
+            <strong>Address:</strong> No 12, Jalan Melur 35, Ampang<br>
+        </p>
+
+        <hr>
+		<p class="receipt-info">
+		<strong>Event Name:</strong> LANY - a beautiful blur: the world tour in Kuala Lumpur<br>
+		<strong>Location:</strong> Axiata Arena, Bukit Jalil<br>
+		<strong>Date: </strong> 22 September 2024 <br>
+		<strong>Time:</strong> 8.00 PM<br>
+		</p>
+
+		<hr>
+		
+		<div class="receipt-content">
+            <table class="receipt-table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Quantity</th>
+                        <th>Price (RM)</th>
+                        <th>Total (RM)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>VVIP</td>
+                        <td>1</td>
+                        <td>990.00</td>
+                        <td>990.00</td>
+                    </tr>
+                    <tr>
+                        <td>CAT 1</td>
+                        <td>2</td>
+                        <td>898.00</td>
+                        <td>1796.00</td>
+                    </tr>
+                    <tr>
+                        <td>CAT 4</td>
+                        <td>1</td>
+                        <td>598.00</td>
+                        <td>598.00</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="qr-container">
+                <div id="qrcode"></div>
+                <p>Scan the QR code to enter the venue</p>
+            </div>
+        </div>
+
+        <hr>
+
+        <p class="receipt-total">
+            Subtotal: RM <span id="subtotal">15.00</span><br>
+            Tax (6%): RM <span id="tax">0.90</span><br>
+            <strong>Total: RM <span id="total">15.90</span></strong>
+        </p>
+
+        <p class="receipt-footer">Thank you for your purchase!</p>
+    </div>
+
+    <script>
+        var qrcode = new QRCode(document.getElementById("qrcode"), {
+            text: "You can enter now!!! Enjoy the Concert <3",
+            width: 128,
+            height: 128, 
+            colorDark : "#000000",
+            colorLight : "#ffffff",
+            correctLevel : QRCode.CorrectLevel.H
+        });
+    </script>
+</body>
+</html>

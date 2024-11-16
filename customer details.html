@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Customer's Details - Carat Live </title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<!-- Header - navigation bar to other page  -->
+<header class="header">
+	<nav  class="navbar">
+		<div class="logo">
+			<span class="logoCarat">CARAT</span><span class="logoLive">Live</span>
+        </div>
+        <div id="user-navbar">
+             <a href="index.php">HOME</a>
+             <a href="event.php">EVENTS</a>
+             <a href="contactus.php">CONTACT US</a>
+             <a href="about%20us.html">ABOUT US</a>
+        </div>
+		<div id="admin-navbar">
+			<a href="index.php">HOME</a>
+            <a href="event.php">MANAGE EVENTS</a>
+			<a href="inquiries.php">MANAGE Q&A</a>
+        </div>
+       <a href="loginform.php"><button id="login-button" class="buttonSecondary">LOG IN</button></a>  
+		<div id="loggedin-nav">
+			<a id="welcome-message"></a>
+			<a onclick="logout()" id="logout-button"><i style="color: white" class="fa-solid fa-right-from-bracket"></i></a>
+		</div>
+   </nav>
+</header>
+
+<body class="app">
+    <!-- Main profile section with image on the left and form on the right -->
+    <div style="display: flex; justify-content: center; height: 100vh; align-items: center;">
+        <div class="details-container" style="margin-top: 200px">
+
+			<div class="profile-details">
+				<div style="text-align: center; font-size: 20px"><h2>Please Enter Your Details</h2></div>
+				<form id="profileForm" action="#" method="post">
+					<div class="form-group">
+						<label for="firstname">First Name:</label>
+						<input type="text" id="firstname" name="firstname" required>
+					</div>
+					<div class="form-group">
+						<label for="lastname">Last Name:</label>
+						<input type="text" id="lastname" name="lastname" required>
+					</div>
+					<div class="form-group">
+						<label for="email">Email:</label>
+						<input type="email" id="email" name="email" required>
+					</div>
+					<div class="form-group">
+						<label for="phone">Phone Number:</label>
+						<input type="tel" id="phone" name="phone" required>
+					</div>
+					<div class="form-group">
+						<label for="nric">NRIC:</label>
+						<input type="text" id="nric" name="nric" required>
+					</div>
+					<div class="form-group">
+						<label for="address">Address:</label>
+						<input type="text" id="address" name="address" required>
+					</div>
+					<div style="text-align: center;">
+						<button class="buttonSecondary">Proceed to Payment</button>
+					</div>
+				</form>
+			</div>
+		</div>
+    </div>
+    <!-- Embedding the footer -->
+    <div id="footer">
+        <iframe src="footer.html" style="border: none; width: 100%;"></iframe>
+    </div>
+
+	<script>
+		// Retrieve the user data from localStorage
+		const user = JSON.parse(localStorage.getItem('user'));
+	
+		// Check if user data exists in localStorage
+		if (user) {
+			// Example: Show user info on the page
+			document.getElementById('welcome-message').innerHTML = 'Welcome, ' + user.firstname;
+			document.getElementById('loggedin-nav').style.display = 'block';//make it appear
+			document.getElementById('login-button').style.display = 'none';//make it disappear
+		} 
+		else {
+			console.log('No user is logged in.');
+			document.getElementById('logout-button').style.display = 'none';//make it disappear
+		}
+	
+		if(localStorage.getItem('role')== 'admin'){
+			document.getElementById('admin-navbar').style.display = 'block';//make it appear
+			document.getElementById('user-navbar').style.display = 'none';//make it disappear
+		} 
+		else{
+			document.getElementById('user-navbar').style.display = 'block';//make it disappear
+			document.getElementById('admin-navbar').style.display = 'none';//make it disappear
+		}
+		function logout() {
+			localStorage.clear();  // Clear all localStorage items
+			window.location.href = 'loginform.php'; // Redirect to login.php
+		}
+	
+	</script>
+	
+</body>
+</html>

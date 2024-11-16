@@ -1,0 +1,843 @@
+@charset "utf-8"; /* CSS Document */
+
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  scroll-behavior: smooth;
+  font-family: Verdana, Verdana, sans-serif;
+  color: black;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+h7 {
+  color: black;
+  margin-bottom: 15px;
+}
+
+html {
+  font-size: 16px;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  position: relative;
+  margin: 0; /* Remove default margin */
+}
+
+/* Main styles for app background */
+.app {
+  background-image: url("concertBackground.png");
+  background-size: cover; /* Ensures the background covers the whole section */
+  background-position: center; /* Centers the image */
+}
+
+/* Logo styles */
+.logoCarat {
+  font-size: 38px;
+  font-style: oblique;
+  font-family: "Copperplate", fantasy;
+  color: pink;
+  transition: 0.3s ease-in-out;
+}
+
+.logoLive {
+  font-size: 18px;
+  font-family: "Copperplate", fantasy;
+  padding-left: 5px;
+  color: cornflowerblue;
+  transition: 0.3s ease-in-out;
+}
+
+/* Navbar styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  background: transparent; /* Completely transparent background */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: You can keep or remove the shadow */
+  z-index: 1000;
+  width: 100%;
+  top: 0;
+  transition: top 0.3s ease-in-out; /* Smooth transition for showing/hiding */
+}
+
+/* Navbar links styles */
+.navbar a {
+  font-size: 19px;
+  font-weight: 550;
+  color: whitesmoke;
+  margin-left: 2.5rem; /* Adjusted margin for better spacing between links */
+  border-bottom: 2px solid transparent; /* Thinner underline for a sleeker look */
+  padding-bottom: 5px;
+  transition: all 0.3s ease-in-out; /* Smooth transition for hover effects */
+}
+
+.navbar a:hover,
+.navbar a.active {
+  /* Active link and hover states */
+  color: pink;
+  border-bottom: 2px solid pink; /* Underline appears on hover or when active */
+}
+
+/* Ensures text decoration is applied on hover for card buttons */
+.cardTitleButton a:hover {
+  text-decoration: underline;
+}
+
+/* Make the header responsive */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* Stacks the elements vertically on small screens */
+    align-items: flex-start;
+  }
+
+  .navbar a {
+    margin: 10px 0; /* Adds space between links in the vertical layout */
+  }
+}
+
+.header {
+  height: 100px; /* Example height */
+  overflow: hidden; /* Prevent content overflow */
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 5px;
+}
+
+.card,
+.card-history,
+.event-container {
+  background-color: whitesmoke;
+  padding: 30px;
+  border-radius: 35px;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.card-history {
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center; /* Centers vertically */
+}
+
+.buttonSecondary,
+.buttonEvents {
+  background-color: black;
+  height: 55px;
+  border-style: solid;
+  border-color: cornflowerblue;
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: 0.3s ease;
+}
+
+.buttonSecondary:hover {
+  background-color: dimgray;
+  height: 55px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px; /* Space between the buttons */
+  margin-top: 10px;
+}
+
+/* Adjusting the button styling */
+.buttonEvents {
+  padding: 10px 20px;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.buttonEvents:hover {
+  background-color: #5a6268;
+}
+
+/* Optional: Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .button-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.cardTitleButton {
+  display: flex;
+  justify-content: space-between; /* Distributes space between spans and links */
+  align-items: center; /* Aligns items vertically center */
+}
+
+/* Slideshow container */
+.slideshow-container {
+  position: relative;
+  max-width: 1000px;
+  margin: auto;
+  padding-top: 50px;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Fade animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Dots (for manual control) */
+.dot {
+  height: 10px;
+  width: 10px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active,
+.dot:hover {
+  background-color: #717171;
+}
+
+.cardSearch {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Distributes space between spans and links */
+  padding-bottom: 40px;
+  padding-top: 40px;
+}
+
+.input-search {
+  width: 35%;
+  padding-top: 18px;
+  margin-right: 10px;
+}
+
+.input-field {
+  width: 100%; /* Full width of the parent container */
+  height: 45px;
+  padding: 0.75rem; /* Adds padding inside the input field */
+  margin-bottom: 15px;
+  border: 2px solid #ccc; /* Light gray border */
+  border-radius: 4px; /* Rounded corners */
+  font-size: 16px; /* Font size inside the input */
+  color: #333; /* Text color */
+  background-color: #eff5fe; /* Light background color */
+  box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+  transition: border-color 0.3s ease, background-color 0.3s ease; /* Smooth transition for border and background color */
+}
+
+.input-field:focus {
+  border-color: cornflowerblue; /* Border color on focus */
+  background-color: #fff; /* Background color on focus */
+  outline: none; /* Removes the default focus outline */
+}
+
+.gallery {
+  border: 1px solid #ccc;
+  transition: 0.3s ease;
+}
+
+.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+.gallery:hover img {
+  opacity: 0.5; /* Change the opacity of the image on hover */
+}
+
+.desc {
+  padding: 15px;
+  text-align: center;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.responsive {
+  padding: 0 6px;
+  float: left;
+  width: 24.99999%;
+}
+
+/*Home Page */
+.listPreviousEvent,
+.listUpcomingEvents {
+  width: 100%;
+  padding: 15px 0 15px 0px;
+  border-bottom: 3px solid grey;
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.listPreviousEventDesc,
+.listUpcomingEventsDesc {
+  margin-left: 20px;
+  flex: 1;
+  padding: 10px;
+  font-size: 15px;
+  display: flex;
+  flex-direction: column; /* Align content in a column */
+  justify-content: space-between; /* Space between description and buttons */
+}
+
+.listPreviousEventDesc h2 {
+  margin-bottom: 15px; /* Adjust the value as needed */
+  font-size: 25px;
+}
+
+.listPreviousEventDesc div {
+  text-align: justify;
+  line-height: 2;
+}
+
+.history-section {
+  width: 80%;
+}
+.history-section h2 {
+  font-size: 40px;
+  color: black; /* Darker color for the heading */
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.history-section p,
+.moreinfo-card p {
+  font-size: 18px; /* Increased font size for readability */
+  line-height: 1.6; /* Adjust line spacing */
+  color: #333; /* Text color for contrast */
+  margin-bottom: 15px;
+  text-align: justify;
+}
+
+/* Apply custom styles to CKEditor content */
+.ck-content {
+    font-family: Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+.ck-content h1 {
+    font-size: 26px;
+    color: #1a73e8;
+}
+
+.ck-content h2 {
+    font-size: 22px;
+    color: #3e4a61;
+}
+
+.ck-content p {
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.ck-content a {
+    color: #ff6347; 
+    text-decoration: none;
+}
+
+.ck-content a:hover {
+    text-decoration: underline;
+}
+
+.ck-content ul {
+  padding-left: 20px;
+  list-style: disc;
+}
+
+.ck-content blockquote {
+  font-style: italic;
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-left: 5px solid #ccc;
+  margin: 20px 0;
+}
+
+
+
+.history-section strong {
+  font-weight: bold;
+  color: #e74c3c; /* Use a distinct color for emphasis (artist names) */
+}
+
+@media (max-width: 768px) {
+  .history-section {
+    padding: 10px;
+  }
+
+  .history-section p {
+    font-size: 16px;
+  }
+}
+
+i{
+  padding-right: 10px;
+}
+
+/* About Us Page - Our Team  */
+/* General styles for the team section */
+.team-section {
+  padding: 50px;
+  background-color: #f9f9f9;
+  text-align: center;
+  border-radius: 35px;
+}
+
+.team-section h2 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  color: black;
+}
+
+.team-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+/* Individual team member card */
+.team-member {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  padding: 20px;
+  text-align: center;
+}
+
+.team-member img {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.team-member h3 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.team-member p {
+  font-size: 18px; /* Increased font size for readability */
+  line-height: 1.6; /* Adjust line spacing */
+  color: #333; /* Text color for contrast */
+  margin-bottom: 15px;
+}
+
+/*Sign Up/Log In Form Container */
+.sign-container {
+  background: #fff;
+  color: #2c3e50;
+  padding: 40px 20px;
+  border-radius: 8px;
+  margin: 100 100;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+}
+.contact-container {
+  background: #fff;
+  color: #2c3e50;
+  padding: 40px 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  text-align: center;
+  margin-top: 160px;
+  width: 100%;
+}
+
+.admin-container {
+  background: #fff;
+  color: #2c3e50;
+  padding: 40px 30px;
+  border-radius: 8px;
+  max-width: 800px;
+  text-align: center;
+  margin-top: 0px; /* Adds top and bottom margin */
+}
+
+.sign-container h2,
+.contact-container h2,
+.admin-container h2 {
+  font-size: 30px;
+  margin-bottom: 20px;
+  color: black;
+}
+.sign-container p,
+.contact-container p,
+.admin-container p {
+  color: black;
+  margin-bottom: 20px;
+}
+
+/* Form styling */
+.sign-container form,
+.contact-container form,
+.admin-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.form-group label {
+  font-size: 16px;
+  margin-bottom: 5px;
+  display: block;
+  color: #2c3e50;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #3498db;
+}
+
+/* Textarea styling */
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* Responsive layout for smaller screens */
+@media (max-width: 768px) {
+  .team-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .responsive {
+    width: 49.99999%;
+    margin: 6px 0;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .responsive {
+    width: 100%;
+  }
+}
+
+.fa-solid fa-location-dot {
+  font-family: Cambria, "Hoefler Text", "Liberation Serif", Times,
+    "Times New Roman", "serif";
+}
+
+.profile-container,
+.details-container {
+  background: #fff;
+  color: #2c3e50;
+  padding: 40px 30px;
+  border-radius: 8px;
+  max-width: 800px;
+  width: 100%;
+  text-align: center;
+  margin: 100px 0; /* Adds top and bottom margin */
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px; /* Space between the profile picture and form */
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.profile-picture {
+  flex: 0 0 200px; /* Fixed width for profile picture container */
+  text-align: center; /* Center the profile picture */
+  position: relative; /* Required for positioning overlay */
+  cursor: pointer; /* Show pointer cursor on hover */
+}
+
+.profile-picture input[type="file"] {
+  display: none; /* Hide the file input */
+}
+
+.icon-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.7); /* Light overlay color */
+  display: flex; /* Center icon on the overlay */
+  justify-content: center; /* Center icon horizontally */
+  align-items: center; /* Center icon vertically */
+  border-radius: 50%; /* Make the overlay circular */
+  opacity: 0; /* Start hidden */
+  transition: opacity 0.3s; /* Fade effect */
+}
+
+.profile-picture:hover .icon-overlay {
+  opacity: 1; /* Show overlay on hover */
+}
+
+.profile-details {
+  flex: 1; /* The form will take up more space than the picture */
+  text-align: left; /* Align text to the left for better readability */
+}
+
+.profile-details h2 {
+  margin-bottom: 20px; /* Space below the heading */
+}
+
+.form-group {
+  margin-bottom: 15px; /* Space between form groups */
+}
+
+.date {
+  text-align: center;
+  padding: 20px;
+  border-right: 2px solid #000;
+  margin-right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 200px; /* Adjust the height value as needed */
+}
+
+.day {
+  color: black;
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.month {
+  color: black;
+  font-size: 18px;
+  margin: 0;
+}
+
+/*receipt page*/
+.receipt-container {
+  background-color: white;
+  padding: 20px;
+  width: 800px;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin: 0 auto;
+}
+
+.receipt-content {
+  display: flex;
+  justify-content: space-between; /* Ensures even spacing between table and QR code */
+  align-items: flex-start; /* Aligns the QR code and table to the top */
+  gap: 20px; /* Adds space between the table and QR code */
+}
+
+.receipt-info {
+  text-align: left;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.receipt-table {
+  width: 70%; /* Adjust table width */
+  border-collapse: collapse;
+}
+
+.receipt-table th,
+.receipt-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.receipt-table th {
+  background-color: #f8f8f8;
+}
+
+.receipt-total {
+  text-align: right;
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+.receipt-footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #555;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: #ddd;
+  margin: 10px 0;
+}
+
+.qr-container {
+  width: 30%; /* Adjust QR container width */
+  text-align: center;
+}
+
+#qrcode {
+  margin: 10px auto;
+  width: 128px;
+  height: 128px;
+}
+.tabs {
+  display: flex;
+  border-bottom: 1px solid #ddd;
+  padding: 0 20px;
+}
+
+.tab {
+  flex: 1;
+  padding: 10px;
+  font-weight: bold;
+  color: #333;
+  background-color: #f9f9f9;
+  border: none;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+}
+
+.tab.active,
+.tab:hover {
+  background-color: #ffffff;
+  border-bottom: 3px solid #004c3f;
+}
+.moreinfo-card {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  max-width: 100%;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.event-section {
+  display: flex;
+  margin-top: 20px;
+  gap: 20px;
+}
+.event-image {
+  width: 30%;
+  height: 300px;
+  background-color: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #555;
+  text-align: center;
+}
+.event-details {
+  flex-grow: 1;
+}
+.event-details h2 {
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+.event-details button {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.tickets {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.ticket-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  max-width: 500px;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.ticket-row span {
+  font-size: 16px;
+  color: #333;
+}
+
+.ticket-row input[type="number"] {
+  width: 100px;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.buy-now {
+  margin-top: 20px;
+  text-align: center;
+}
+.buy-now button {
+  padding: 12px 20px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.center-button {
+  display: flex;
+  justify-content: center;
+}

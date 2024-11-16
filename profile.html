@@ -1,0 +1,184 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Profile - Carat Live</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+	
+<!-- Header - navigation bar to other page  -->
+<header class="header">
+	<nav  class="navbar">
+		<div class="logo">
+			<span class="logoCarat">CARAT</span><span class="logoLive">Live</span>
+        </div>
+        <div id="user-navbar">
+             <a href="index.php">HOME</a>
+             <a href="event.php">EVENTS</a>
+             <a href="contactus.php">CONTACT US</a>
+             <a href="about%20us.html">ABOUT US</a>
+        </div>
+		<div id="admin-navbar">
+			<a href="index.php">HOME</a>
+            <a href="event.php">MANAGE EVENTS</a>
+			<a href="inquiries.php">MANAGE Q&A</a>
+        </div>
+       <a href="loginform.php"><button id="login-button" class="buttonSecondary">LOG IN</button></a>  
+		<div id="loggedin-nav">
+			<a id="welcome-message"></a>
+			<a onclick="logout()" id="logout-button"><i style="color: white" class="fa-solid fa-right-from-bracket"></i></a>
+		</div>
+   </nav>
+</header>
+
+<body class="app">
+    <!-- Main profile section with image on the left and form on the right -->
+    <div style="display: flex; justify-content: center; height: 100vh; align-items: center;">
+        <div class="profile-container" style="margin-top: 70px">
+			<div class="profile-picture" id="profilePicContainer">
+				<input type="file" id="profilePic" name="profilePic" accept="image/*">
+				<i class="fas fa-user-circle" style="font-size: 200px; color: #ccc;"></i> <!-- Default User Icon -->
+				<div class="icon-overlay">
+					<i class="fas fa-camera" style="font-size: 30px; color: #007BFF;"></i> <!-- Camera icon on overlay -->
+				</div>
+			</div>
+			<div class="profile-details">
+				<h2>Your Profile</h2>
+				<form id="profileForm" action="#" method="post">
+					<div class="form-group">
+						<label for="firstname">First Name:</label>
+						<input type="text" id="firstname" name="firstname" required>
+					</div>
+					<div class="form-group">
+						<label for="lastname">Last Name:</label>
+						<input type="text" id="lastname" name="lastname" required>
+					</div>
+					<div class="form-group">
+						<label for="email">Email:</label>
+						<input type="email" id="email" name="email" required>
+					</div>
+					<div class="form-group">
+						<label for="phone">Phone Number:</label>
+						<input type="tel" id="phone" name="phone" required>
+					</div>
+					<div class="form-group">
+						<label for="birthdate">Birth Date:</label>
+						<input type="date" id="birthdate" name="birthdate" required>
+					</div>
+					<div class="form-group">
+						<label for="nric">NRIC:</label>
+						<input type="text" id="nric" name="nric" required>
+					</div>
+					<div class="form-group">
+						<label for="address">Address:</label>
+						<input type="text" id="address" name="address" required>
+					</div>
+					<div style="text-align: center;">
+						<button class="buttonSecondary">Save</button>
+						 <button type="button" id="editButton" class="buttonSecondary">Edit</button>
+					</div>
+				</form>
+			</div>
+		</div>
+   </div>
+   <script>
+
+	// Retrieve the user data from localStorage
+	const user = JSON.parse(localStorage.getItem('user'));
+
+	// Check if user data exists in localStorage
+	if (user) {
+		// Example: Show user info on the page
+		document.getElementById('welcome-message').innerHTML = 'Welcome, ' + user.firstname;
+		document.getElementById('loggedin-nav').style.display = 'block';//make it appear
+		document.getElementById('login-button').style.display = 'none';//make it disappear
+	} 
+	else {
+		console.log('No user is logged in.');
+		document.getElementById('logout-button').style.display = 'none';//make it disappear
+	}
+
+	if(localStorage.getItem('role')== 'admin'){
+		document.getElementById('admin-navbar').style.display = 'block';//make it appear
+		document.getElementById('user-navbar').style.display = 'none';//make it disappear
+	} 
+	else{
+		document.getElementById('user-navbar').style.display = 'block';//make it disappear
+		document.getElementById('admin-navbar').style.display = 'none';//make it disappear
+	}
+	function logout() {
+    	localStorage.clear();  // Clear all localStorage items
+        window.location.href = 'loginform.php'; // Redirect to login.php
+    }
+
+
+		document.getElementById('profilePicContainer').onclick = function() {
+		document.getElementById('profilePic').click(); // Trigger the file input when the profile picture is clicked
+	};
+		document.getElementById('profilePic').addEventListener('change', function(event) {
+			const file = event.target.files[0];
+			if (file) {
+				const reader = new FileReader();
+				reader.onload = function(e) {
+					const imgElement = document.createElement('img');
+					imgElement.src = e.target.result;
+					imgElement.style.width = '200px'; // Set width for the image
+					imgElement.style.height = '200px'; // Set height for the image
+					imgElement.style.borderRadius = '50%'; // Circular shape
+					imgElement.style.objectFit = 'cover'; // Cover the area
+					imgElement.style.border = '2px solid #ccc'; // Border for the image
+					const profilePic = document.querySelector('.profile-picture i'); // Select the existing icon
+					profilePic.parentNode.replaceChild(imgElement, profilePic); // Replace the icon with the new image
+				};
+				reader.readAsDataURL(file);
+			}
+		});
+
+        const profileForm = document.getElementById('profileForm');
+        const inputs = profileForm.querySelectorAll('input:not([type="file"])'); // Exclude file input
+        const submitButton = profileForm.querySelector('button[type="submit"]');
+        const editButton = document.getElementById('editButton');
+        const profilePicInput = document.getElementById('profilePic');
+        const profileImage = document.getElementById('profileImage');
+        const profilePicContainer = document.getElementById('profilePicContainer');
+
+        // Trigger file input when the profile picture is clicked
+        profilePicContainer.addEventListener('click', function() {
+            profilePicInput.click(); // Simulate click on file input
+        });
+
+        // Preview the uploaded image
+        profilePicInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    profileImage.src = e.target.result; // Set the image source to the uploaded file
+                };
+                reader.readAsDataURL(file); // Read the uploaded file as a Data URL
+            }
+        });
+
+        profileForm.addEventListener('submit', function(e) {
+            e.preventDefault();  // Prevent the form from submitting (for demo purposes)
+
+            // Disable all input fields and the button after submission
+            inputs.forEach(input => {
+                input.setAttribute('disabled', 'disabled');
+            });
+
+            submitButton.setAttribute('disabled', 'disabled');
+            editButton.style.display = 'inline-block';  // Keep the Edit button visible
+        });
+
+        // Enable form fields for editing when the Edit button is clicked
+        editButton.addEventListener('click', function() {
+            inputs.forEach(input => {
+                input.removeAttribute('disabled'); // Enable input fields
+            });
+            submitButton.removeAttribute('disabled'); // Enable the Save button
+        });
+    </script>
+</body>
+</html>
