@@ -56,7 +56,8 @@ $result = mysqli_query($conn, $query);
                     <tr>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Message</th>                        
+                        <th>Internal User</th>
+                        <th>Message</th>                     
                         <th>Reply Status</th>
                         <th></th>
                     </tr>
@@ -72,6 +73,9 @@ $result = mysqli_query($conn, $query);
                     <tr>
                         <td><?php echo $row['name']?></td>
                         <td><?php echo $row['email']?></td>
+                        <?php if ($row['internaluser']== 1) { ?><td style="color:purple">Yes</td>
+                        <?php } else { ?><td style="color:red">No</td>
+                        <?php } ?>
                         <td><?php echo $row['message']?></td>
                         <?php if ($row['reply']) { ?><td style="color:green">Replied</td>
                         <?php } else { ?><td style="color:orange">Pending</td>

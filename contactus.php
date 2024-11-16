@@ -26,19 +26,21 @@ if(isset($_GET['inquiry_id'])){
 	$inquiry_id = $_GET['inquiry_id'];
     $mode = $_GET['mode'];
 
+
 	$query = "SELECT * FROM inquiry WHERE id = $inquiry_id";
 	$result = mysqli_query($conn, $query); //run query
 
 	if(mysqli_num_rows($result) > 0){
 
-		$event = mysqli_fetch_assoc($result);
-        $name = $event['name'];
-        $email = $event['email'];
-        $message= $event['message'];
-        $reply= $event['reply'];
+		$inquiry = mysqli_fetch_assoc($result);
+        $name = $inquiry['name'];
+        $email = $inquiry['email'];
+        $message= $inquiry['message'];
+        $reply= $inquiry['reply'];
+        $internaluser= $inquiry['internaluser'];
 
 	} else{
-		echo "Event not Found.";
+		echo "Inquiry not Found.";
 	}
 } else {
 	echo "No Inquiry ID provided.";
@@ -99,10 +101,19 @@ if(isset($_GET['inquiry_id'])){
                     <label for="message"  id="message-label"></label>
                     <textarea id="message" name="message" rows="4" required> <?php echo !empty($message) ? htmlspecialchars($message) : ''; ?> </textarea>
                 </div>
-                <div class="form-group" id="reply-area">
+                
+                <div style="<?php echo $internaluser == '0' && $mode != 'view' ? 'display:none' : '' ?> " class="form-group" id="reply-area">
                     <label for="reply" >Your Reply</label>
                     <textarea id="reply" name="reply" rows="4" <?php echo ($mode == 'edit') ? 'required="true"' : ''; ?> > <?php echo !empty($reply) ? htmlspecialchars($reply) : ''; ?> </textarea>
                 </div>
+                <?php  
+                if ($internaluser == '0' && $mode != 'view'){
+                ?>
+                  <div style="padding-top: 10px; padding-bottom: 10px; color: gray">Note: This is an external user. Please reply this through an email. Please click the button below if you already answer this message through an email</div>  
+                <?php 
+                }
+                ?>
+
                 <?php                 
                 if ($mode !== 'view'){
                 ?>
@@ -147,7 +158,10 @@ if(isset($_GET['inquiry_id'])){
             let mode = urlParams.get('mode');
 
             if(mode ==='edit'){
-                document.getElementById("button-contact-us").textContent = "Send Reply";
+                if("<?php echo $internaluser; ?>" == '0'){
+                document.getElementById("reply").value ="Replied through Email";
+                }
+                document.getElementById("button-contact-us").textContent = "<?php echo $internaluser; ?>" == '1' ? "Send Reply" : "Mark as Replied";
             }else{
                 document.getElementById("reply").readOnly = true;
             }           
