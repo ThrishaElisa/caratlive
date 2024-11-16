@@ -50,7 +50,7 @@ if(isset($_GET['event_id'])){
         </div>
        <a href="loginform.php"><button id="login-button" class="buttonSecondary">LOG IN</button></a>  
 		<div id="loggedin-nav">
-			<a id="welcome-message"></a>
+			<a href="profile.html" id="welcome-message"></a>
 			<a onclick="logout()" id="logout-button"><i style="color: white" class="fa-solid fa-right-from-bracket"></i></a>
 		</div>
    </nav>

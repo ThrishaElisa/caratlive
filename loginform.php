@@ -23,8 +23,26 @@
     </script>
 
 </head>
+
+<!-- Header - navigation bar to other page  -->
+<header class="header">
+	<nav  class="navbar">
+		<div class="logo">
+			<span class="logoCarat">CARAT</span><span class="logoLive">Live</span>
+        </div>
+        <div id="user-navbar">
+             <a href="index.php">HOME</a>
+             <a href="event.php">EVENTS</a>
+             <a href="contactus.php">CONTACT US</a>
+             <a href="about%20us.html">ABOUT US</a>
+        </div>
+        <div></div>
+        <div></div>
+   </nav>
+</header>
+
 <body class="app">
-    <div style="display: flex; justify-content: center; height: 100vh; align-items: center;">
+    <div style="display: flex; justify-content: center; margin-top: 50px;">
         <div class="sign-container">
             <h2>Log In</h2>
             <form action="login.php" method="POST" onsubmit="return validateLoginForm()">
