@@ -32,7 +32,7 @@ if (isset($_GET['title'])){
              <a href="index.php">HOME</a>
              <a href="event.php">EVENTS</a>
              <a href="contactus.php">CONTACT US</a>
-             <a href="aboutus.html">ABOUT US</a>
+             <a href="aboutus.php">ABOUT US</a>
         </div>
 		<div id="admin-navbar">
 			<a href="index.php">HOME</a>
