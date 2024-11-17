@@ -864,3 +864,42 @@ hr {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
+.dropdown-list {
+  list-style-type: none; /* Removes the bullet points */
+  padding: 0; /* Removes default padding */
+  margin: 0; /* Removes default margin */
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    
+}
+
+/* Header Styling */
+th {
+    background-color: purple;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+/* Row Styling */
+td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Hover Effect */
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Alternating Row Colors */
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
