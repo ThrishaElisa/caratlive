@@ -89,7 +89,7 @@ if (isset($_GET['keyword'])) {
 						<div style="padding-top: 10px;">Time: <?php echo date("h:i A", strtotime($row['time'])); ?></div>
 						<div id="user-eventaction<?php echo $index ?>" style="text-align: left; padding-top: 20px;">
 							<a href="moreinfo.php?event_id=<?php echo $row['event_id']; ?>"><button class="buttonSecondary">More Info</button></a> 
-							<button class="buttonSecondary">Buy Now</button>
+							<button id="buy-button<?php echo $index ?>" class="buttonSecondary">Buy Now</button>
 						</div>
 						<div id="admin-eventaction<?php echo $index ?>" style="text-align: left; padding-left: 20px; padding-top: 20px;">
 							<button class="buttonSecondary" onclick="redirectToPage('event_form.php?event_id=<?php echo $row['event_id']; ?>&mode=edit')"><i style="color: white; padding-right: 5px" class="fa-solid fa-pen-to-square"></i>Edit</button>
@@ -100,20 +100,16 @@ if (isset($_GET['keyword'])) {
 				</div>
 			</div>
 		</div>
-
 		<?php
 			$index++; }
-		}else{
-			
+		}else{	
 		?>
 		<div style="padding:16px 0px 16px 0px;">
 			No results found
 		</div>
-
 		<?php
 		}
 		?>
-		
 	</div>
 	<script>
 
@@ -127,12 +123,21 @@ if (isset($_GET['keyword'])) {
 				// Show admin actions for the row, hide user actions
 				actionDiv.style.display = 'block';
 				userActions[index].style.display = 'none';
-			} else {
+				
+			} else if (localStorage.getItem('role')== 'user') {
 				// Show user actions for the row, hide admin actions
 				actionDiv.style.display = 'none';
 				userActions[index].style.display = 'block';
+				document.getElementById('addevent-button').style.display = 'none'; //make it disappear
+			}else{
+				actionDiv.style.display = 'none';
+				userActions[index].style.display = 'block';
+				document.getElementById('addevent-button').style.display = 'none'; //make it disappear
+				document.getElementById('buy-button'+index).style.display = 'none'; //make it disappear
+				
+				
 			}
-    });
+		});
 
 		function searchEvents() {
         // Get the value from the input field

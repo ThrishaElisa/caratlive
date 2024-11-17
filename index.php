@@ -26,6 +26,9 @@
 
     <!-- Main content -->
     <div class="slideshow-container">
+		<audio autoplay>
+			<source src="audiofile.mp3" type="audio/mpeg">
+		</audio>
         <div class="mySlides fade">
             <img src="assets/lany.png" alt="poster" style="width:100%">
         </div>

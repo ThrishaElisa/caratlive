@@ -40,6 +40,8 @@
                         id="welcome-message"></span><i class="fa-solid fa-ellipsis-vertical dropbtn"></i>
                     <div class="dropdown-content">
                         <div  id="user-profile" onclick="redirectToPage('profileform.php')" class="dropdown-item"><i class="fa-solid fa-user"></i> My Profile</div>
+                        <div  id="user-profile" onclick="redirectToPage('historypurchased.php')" class="dropdown-item"><i class="fa-solid fa-receipt"></i>Order History</div>
+                        <div  id="user-profile" onclick="redirectToPage('inquiry.php')" class="dropdown-item"><i class="fa-regular fa-comment"></i>Inquiry</div>
                         <div onclick="logout()" class="dropdown-item" id="logout-button"><i
                                 class="fa-solid fa-right-from-bracket"></i> Logout</div>
                     </div>
