@@ -106,11 +106,6 @@ body {
   }
 }
 
-.header {
-  height: 100px; /* Example height */
-  overflow: hidden; /* Prevent content overflow */
-}
-
 .footer {
   position: fixed;
   bottom: 0;
@@ -346,33 +341,33 @@ body {
 
 /* Apply custom styles to CKEditor content */
 .ck-content {
-    font-family: Arial, sans-serif;
-    color: #333;
-    line-height: 1.6;
+  font-family: Arial, sans-serif;
+  color: #333;
+  line-height: 1.6;
 }
 
 .ck-content h1 {
-    font-size: 26px;
-    color: #1a73e8;
+  font-size: 26px;
+  color: #1a73e8;
 }
 
 .ck-content h2 {
-    font-size: 22px;
-    color: #3e4a61;
+  font-size: 22px;
+  color: #3e4a61;
 }
 
 .ck-content p {
-    margin-bottom: 20px;
-    font-size: 16px;
+  margin-bottom: 20px;
+  font-size: 16px;
 }
 
 .ck-content a {
-    color: #ff6347; 
-    text-decoration: none;
+  color: #ff6347;
+  text-decoration: none;
 }
 
 .ck-content a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .ck-content ul {
@@ -387,8 +382,6 @@ body {
   border-left: 5px solid #ccc;
   margin: 20px 0;
 }
-
-
 
 .history-section strong {
   font-weight: bold;
@@ -405,7 +398,7 @@ body {
   }
 }
 
-i{
+i {
   padding-right: 10px;
 }
 
@@ -840,4 +833,63 @@ hr {
 .center-button {
   display: flex;
   justify-content: center;
+}
+
+.welcome-label {
+  font-size: 19px;
+  font-weight: 550;
+  color: whitesmoke;
+  padding-right: 10px;
+}
+
+.dropdown-content .dropdown-item {
+  padding: 15px;
+  cursor: pointer;
+  font-size: 19px;
+  font-weight: 400;
+}
+
+/* Hover effect for dropdown item */
+.dropdown-content .dropdown-item:hover {
+  background-color: #f1f1f1; /* Change background color on hover */
+  color: #333; /* Change text color on hover */
+}
+
+.dropbtn {
+  color: white;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  background-color: white;
+  display: none;
+  position: absolute;
+  width: 100%;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  right: 0;
+  border: 3px solid whitesmoke; 
+  border-radius: 5px; /* Adjust the value for more or less rounding */
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
 }
