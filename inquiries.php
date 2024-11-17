@@ -14,9 +14,13 @@
 include("db_connection.php");
 include('header.php');
 
+$user_email = '';
+$role = '';
+
 if(isset($_GET['role'])== 'user' && isset($_GET['user_email'])){
 
     $user_email= $_GET['user_email'];
+    $role= $_GET['role'];
     $query = "SELECT * FROM inquiry WHERE email = '$user_email' ORDER BY reply IS NOT NULL, reply ASC";
 }else{
     //PENDING answer will be on top of the list
@@ -36,7 +40,9 @@ $result = mysqli_query($conn, $query);
                     <tr>
                         <th>Name</th>
                         <th>Email</th>
+                        <?php if (!$user_email) { ?>
                         <th>Internal User</th>
+                        <?php } ?>
                         <th>Message</th>
                         <th>Reply Status</th>
                         <th></th>
@@ -53,15 +59,17 @@ $result = mysqli_query($conn, $query);
                     <tr>
                         <td><?php echo $row['name']?></td>
                         <td><?php echo $row['email']?></td>
+                        <?php if (!$user_email) { ?>
                         <?php if ($row['internaluser']== 1) { ?><td style="color:purple">Yes</td>
                         <?php } else { ?><td style="color:red">No</td>
+                        <?php } ?>
                         <?php } ?>
                         <td><?php echo $row['message']?></td>
                         <?php if ($row['reply']) { ?><td style="color:green">Replied</td>
                         <?php } else { ?><td style="color:orange">Pending</td>
                         <?php } ?>
                         <?php 
-                    if(!$row['reply']){
+                    if(!$row['reply'] && $role !== 'user'){
                 ?>
                         <td><a onclick="redirectToPage('contactus.php?inquiry_id=<?php echo $row['id'];?>&mode=edit')"><i
                                     style="color: purple" class="fa-solid fa-reply"></i></a></td>

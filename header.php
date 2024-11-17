@@ -35,7 +35,7 @@
             <a href="loginform.php"><button id="login-button" class="buttonSecondary">LOG IN</button></a>
             <div id="loggedin-nav">
                 <div class="dropdown" style="width: 250px;">
-                    <span class="welcome-label" onclick="redirectToPage('profileform.php')"
+                    <span class="welcome-label"
                         id="welcome-message"></span><i class="fa-solid fa-ellipsis-vertical dropbtn"></i>
                     <ul class="dropdown-content" style="list-style-type: none">
                         <li id="user-profile" onclick="redirectToPage('profileform.php')" class="dropdown-item">
