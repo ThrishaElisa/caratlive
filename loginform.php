@@ -34,7 +34,7 @@
              <a href="index.php">HOME</a>
              <a href="event.php">EVENTS</a>
              <a href="contactus.php">CONTACT US</a>
-             <a href="about%20us.html">ABOUT US</a>
+             <a href="aboutus.html">ABOUT US</a>
         </div>
         <div></div>
         <div></div>

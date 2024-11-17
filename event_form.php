@@ -13,10 +13,9 @@
 // Include database connection
 include("db_connection.php");
 
-$keywordURL='';
 $event_id = '';
 $mode = '';
-// Check if 'keyword' is set in the URL
+
 if (isset($_GET['event_id']) && isset($_GET['mode']) == 'edit') {
 	htmlspecialchars($_GET['event_id']);
     $event_id = $_GET['event_id'];
@@ -53,7 +52,6 @@ if (isset($_GET['event_id']) && isset($_GET['mode']) == 'edit') {
 		echo "Event not Found.";
 	}
 
-    
 } 
 ?>
 
@@ -67,7 +65,7 @@ if (isset($_GET['event_id']) && isset($_GET['mode']) == 'edit') {
              <a href="index.php">HOME</a>
              <a href="event.php">EVENTS</a>
              <a href="contactus.php">CONTACT US</a>
-             <a href="about%20us.html">ABOUT US</a>
+             <a href="aboutus.html">ABOUT US</a>
         </div>
 		<div id="admin-navbar">
 			<a href="index.php">HOME</a>
@@ -76,7 +74,7 @@ if (isset($_GET['event_id']) && isset($_GET['mode']) == 'edit') {
         </div>
        <a href="loginform.php"><button id="login-button" class="buttonSecondary">LOG IN</button></a>  
 		<div id="loggedin-nav">
-			<a href="profile.html" id="welcome-message"></a>
+            <a  onclick="redirectToPage('profileform.php')" id="welcome-message"></a>
 			<a onclick="logout()" id="logout-button"><i style="color: white" class="fa-solid fa-right-from-bracket"></i></a>
 		</div>
    </nav>
@@ -194,9 +192,11 @@ if (isset($_GET['event_id']) && isset($_GET['mode']) == 'edit') {
             }
             return true; // Allow form submission
         }
-        function redirectToPage(page) {
+        function redirectToPage(page) {			
+			page += `?user_id=${user.id}&mode=edit`;
             window.location.href = page;
         }
+
     
     </script>
 

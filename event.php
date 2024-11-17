@@ -47,7 +47,7 @@ if (isset($_GET['keyword'])) {
              <a href="index.php">HOME</a>
              <a href="event.php">EVENTS</a>
              <a href="contactus.php">CONTACT US</a>
-             <a href="about%20us.html">ABOUT US</a>
+             <a href="aboutus.html">ABOUT US</a>
         </div>
 		<div id="admin-navbar">
 			<a href="index.php">HOME</a>
@@ -56,7 +56,7 @@ if (isset($_GET['keyword'])) {
         </div>
        <a href="loginform.php"><button id="login-button" class="buttonSecondary">LOG IN</button></a>  
 		<div id="loggedin-nav">
-			<a href="profile.html" id="welcome-message"></a>
+			<a  onclick="redirectToPage('profileform.php')" id="welcome-message"></a>
 			<a onclick="logout()" id="logout-button"><i style="color: white" class="fa-solid fa-right-from-bracket"></i></a>
 		</div>
    </nav>
@@ -113,11 +113,10 @@ if (isset($_GET['keyword'])) {
 					<div style="margin-top: 5px;">
 						<strong> <?php echo $row['location']; ?></strong>
 						<div style="padding-top: 10px;">Time: <?php echo date("h:i A", strtotime($row['time'])); ?></div>
-						<div id="user-eventaction<?php echo $index ?>" style="text-align: left; padding-left: 20px; padding-top: 20px;">
+						<div id="user-eventaction<?php echo $index ?>" style="text-align: left; padding-top: 20px;">
 							<a href="moreinfo.php?event_id=<?php echo $row['event_id']; ?>"><button class="buttonSecondary">More Info</button></a> 
 							<button class="buttonSecondary">Buy Now</button>
 						</div>
-
 						<div id="admin-eventaction<?php echo $index ?>" style="text-align: left; padding-left: 20px; padding-top: 20px;">
 							<button class="buttonSecondary" onclick="redirectToPage('event_form.php?event_id=<?php echo $row['event_id']; ?>&mode=edit')"><i style="color: white; padding-right: 5px" class="fa-solid fa-pen-to-square"></i>Edit</button>
 							<button class="buttonSecondary" onclick="confirmDelete(<?php echo $row['event_id']; ?>)" ><i style="color: white; padding-right: 5px" class="fa-solid fa-trash"></i>Delete</button>
@@ -192,7 +191,8 @@ if (isset($_GET['keyword'])) {
 			window.location.href = 'loginform.php'; // Redirect to login.php
 		}
 
-		function redirectToPage(page) {
+		function redirectToPage(page) {			
+			page += `?user_id=${user.id}&mode=edit`;
             window.location.href = page;
         }
 
