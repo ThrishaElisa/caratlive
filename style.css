@@ -584,36 +584,6 @@ textarea {
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-.profile-picture {
-  flex: 0 0 200px; /* Fixed width for profile picture container */
-  text-align: center; /* Center the profile picture */
-  position: relative; /* Required for positioning overlay */
-  cursor: pointer; /* Show pointer cursor on hover */
-}
-
-.profile-picture input[type="file"] {
-  display: none; /* Hide the file input */
-}
-
-.icon-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(255, 255, 255, 0.7); /* Light overlay color */
-  display: flex; /* Center icon on the overlay */
-  justify-content: center; /* Center icon horizontally */
-  align-items: center; /* Center icon vertically */
-  border-radius: 50%; /* Make the overlay circular */
-  opacity: 0; /* Start hidden */
-  transition: opacity 0.3s; /* Fade effect */
-}
-
-.profile-picture:hover .icon-overlay {
-  opacity: 1; /* Show overlay on hover */
-}
-
 .profile-details {
   flex: 1; /* The form will take up more space than the picture */
   text-align: left; /* Align text to the left for better readability */
@@ -621,6 +591,7 @@ textarea {
 
 .profile-details h2 {
   margin-bottom: 20px; /* Space below the heading */
+  font-size: 30px;
 }
 
 .form-group {

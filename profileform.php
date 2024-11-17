@@ -74,13 +74,11 @@ if (isset($_GET['user_id'])) {
         <div style="display:flex; align-items: center;">
             <a href="loginform.php"><button id="login-button" class="buttonSecondary">LOG IN</button></a>
             <div id="loggedin-nav">
-
                 <div class="dropdown">
                     <span class="welcome-label" onclick="redirectToPage('profileform.php')"
                         id="welcome-message"></span><i class="fa-solid fa-ellipsis-vertical dropbtn"></i>
                     <div class="dropdown-content">
-                        <div onclick="redirectToPage('profileform.php')" class="dropdown-item"><i
-                                class="fa-solid fa-user"></i> My Profile</div>
+                        <div id="user-profile" onclick="redirectToPage('profileform.php')" class="dropdown-item"><i class="fa-solid fa-user"></i> My Profile</div>
                         <div onclick="logout()" class="dropdown-item" id="logout-button"><i
                                 class="fa-solid fa-right-from-bracket"></i> Logout</div>
                     </div>
@@ -91,19 +89,11 @@ if (isset($_GET['user_id'])) {
     </nav>
 </header>
 
-
 <body class="app">
     <!-- Main profile section with image on the left and form on the right -->
-    <div style="display: flex; justify-content: center; height: 100vh;">
+    <div style="display: flex; justify-content: center;">
         <div class="profile-container" style="margin-top: 70px">
-			<div class="profile-picture" id="profilePicContainer">
-				<input type="file" id="profilePic" name="profilePic" accept="image/*">
-				<i class="fas fa-user-circle" style="font-size: 200px; color: #ccc;"></i> <!-- Default User Icon -->
-				<div class="icon-overlay">
-					<i class="fas fa-camera" style="font-size: 30px; color: #007BFF;"></i> <!-- Camera icon on overlay -->
-				</div>
-			</div>
-			<div class="profile-details">
+		<div class="profile-details">
 				<h2>Your Profile</h2>
 				<form action="profileedit.php" method="POST"> 
                 <input type="hidden" name="user_id" value="<?php echo isset($user_id) ? $user_id : ''; ?>"> 
@@ -140,8 +130,9 @@ if (isset($_GET['user_id'])) {
 			</div>
 		</div>
    </div>
+</div>		
 
-   <script>
+<script>
 
 	// Retrieve the user data from localStorage
 	const user = JSON.parse(localStorage.getItem('user'));
@@ -161,10 +152,13 @@ if (isset($_GET['user_id'])) {
 	if(localStorage.getItem('role')== 'admin'){
 		document.getElementById('admin-navbar').style.display = 'block';//make it appear
 		document.getElementById('user-navbar').style.display = 'none';//make it disappear
+		document.getElementById('user-profile').style.display = 'none';//make it disappear
 	} 
 	else{
-		document.getElementById('user-navbar').style.display = 'block';//make it disappear
-		document.getElementById('admin-navbar').style.display = 'none';//make it disappear
+		document.getElementById('user-navbar').style.display = 'block';//make it appear
+		document.getElementById('admin-navbar').style.display = 'none';//make it disappear 
+		document.getElementById('user-profile').style.display = 'block';//make it appear
+		
 	}
 	function logout() {
     	localStorage.clear();  // Clear all localStorage items
@@ -194,15 +188,6 @@ if (isset($_GET['user_id'])) {
         }
 
     </script>
-<?php
-// Start the session to check for error message
-session_start();
 
-// If there's an error message in session, show an alert
-if (isset($_SESSION['error'])) {
-    echo "<script>alert('" . $_SESSION['error'] . "');</script>";
-    unset($_SESSION['error']); // Clear the error after displaying
-}
-?>
 </body>
 </html>

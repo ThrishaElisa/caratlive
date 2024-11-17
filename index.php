@@ -35,13 +35,11 @@
         <div style="display:flex; align-items: center;">
             <a href="loginform.php"><button id="login-button" class="buttonSecondary">LOG IN</button></a>
             <div id="loggedin-nav">
-
                 <div class="dropdown">
                     <span class="welcome-label" onclick="redirectToPage('profileform.php')"
                         id="welcome-message"></span><i class="fa-solid fa-ellipsis-vertical dropbtn"></i>
                     <div class="dropdown-content">
-                        <div onclick="redirectToPage('profileform.php')" class="dropdown-item"><i
-                                class="fa-solid fa-user"></i> My Profile</div>
+                        <div onclick="redirectToPage('profileform.php')" class="dropdown-item"><i class="fa-solid fa-user"></i> My Profile</div>
                         <div onclick="logout()" class="dropdown-item" id="logout-button"><i
                                 class="fa-solid fa-right-from-bracket"></i> Logout</div>
                     </div>
