@@ -68,7 +68,7 @@ if (isset($_GET['title'])){
         // Check if user data exists in localStorage
         if (user) {
             // Example: Show user info on the page
-            document.getElementById('welcome-message').innerHTML = 'Welcome, ' + user.firstname;
+            document.getElementById('welcome-message').innerHTML = ('WELCOME, ' + user.firstname).toUpperCase();
             document.getElementById('loggedin-nav').style.display = 'block';//make it appear
             document.getElementById('login-button').style.display = 'none';//make it disappear
         } 
