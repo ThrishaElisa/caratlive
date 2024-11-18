@@ -25,7 +25,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             'id' => $user_id,
             'email' => $email,
             'firstname' => $firstname,
-            'lastname' => $lastname
+            'lastname' => $lastname,
+            'phonenumber' => $phonenumber,
+            'address' => $address,
         ];
 
         $title = '?title=Success';

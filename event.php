@@ -11,6 +11,7 @@
 // Include database connection
 include("db_connection.php");
 include('header.php');
+
 $keywordURL='';
 // Check if 'keyword' is set in the URL
 if (isset($_GET['keyword'])) {

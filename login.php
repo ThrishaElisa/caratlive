@@ -34,7 +34,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 'id' => $row['id'],
                 'email' => $row['email'],
                 'firstname' => $row['firstname'],
-                'lastname' => $row['lastname']
+                'lastname' => $row['lastname'],
+                'phonenumber' => $row['phonenumber'],
+                'address' => $row['address'],
             ];
              
             // Redirect to the main page or dashboard
