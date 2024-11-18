@@ -89,7 +89,7 @@ if (isset($_GET['keyword'])) {
 						<div style="padding-top: 10px;">Time: <?php echo date("h:i A", strtotime($row['time'])); ?></div>
 						<div id="user-eventaction<?php echo $index ?>" style="text-align: left; padding-top: 20px;">
 							<a href="moreinfo.php?event_id=<?php echo $row['event_id']; ?>"><button class="buttonSecondary">More Info</button></a> 
-							<button id="buy-button<?php echo $index ?>" class="buttonSecondary">Buy Now</button>
+							<a href="buynow.php?event_id=<?php echo $row['event_id']; ?>"><button id="buy-button<?php echo $index ?>" class="buttonSecondary">Buy Now</button></a>
 						</div>
 						<div id="admin-eventaction<?php echo $index ?>" style="text-align: left; padding-left: 20px; padding-top: 20px;">
 							<button class="buttonSecondary" onclick="redirectToPage('event_form.php?event_id=<?php echo $row['event_id']; ?>&mode=edit')"><i style="color: white; padding-right: 5px" class="fa-solid fa-pen-to-square"></i>Edit</button>
