@@ -94,7 +94,7 @@ if (isset($_GET['keyword'])) {
 						<div id="admin-eventaction<?php echo $index ?>" style="text-align: left; padding-left: 20px; padding-top: 20px;">
 							<button class="buttonSecondary" onclick="redirectToPage('event_form.php?event_id=<?php echo $row['event_id']; ?>&mode=edit')"><i style="color: white; padding-right: 5px" class="fa-solid fa-pen-to-square"></i>Edit</button>
 							<button class="buttonSecondary" onclick="confirmDelete(<?php echo $row['event_id']; ?>)" ><i style="color: white; padding-right: 5px" class="fa-solid fa-trash"></i>Delete</button>
-							<button class="buttonSecondary"><i style="color: white; padding-right: 5px" class="fa-solid fa-ticket"></i>Manage Tickets</button>
+							<button class="buttonSecondary" onclick="redirectToPage('manageticketform.php?event_id=<?php echo $row['event_id']; ?>')"><i style="color: white; padding-right: 5px" class="fa-solid fa-ticket"></i>Manage Tickets</button>
 						</div>
 					</div>
 				</div>

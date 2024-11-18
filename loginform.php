@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,37 +9,37 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <script>
-        // Function to validate the form (you can also add basic client-side validation here)
-        function validateLoginForm() {
-            var email = document.getElementById("email").value;
-            var password = document.getElementById("password").value;
+    // Function to validate the form (you can also add basic client-side validation here)
+    function validateLoginForm() {
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
 
-            // Make sure both fields are filled
-            if (!email || !password) {
-                alert("Please fill in both fields.");
-                return false; // Prevent form submission
-            }
-            return true; // Allow form submission
+        // Make sure both fields are filled
+        if (!email || !password) {
+            alert("Please fill in both fields.");
+            return false; // Prevent form submission
         }
+        return true; // Allow form submission
+    }
     </script>
 
 </head>
 
 <!-- Header - navigation bar to other page  -->
 <header class="header">
-	<nav  class="navbar">
-		<div class="logo">
-			<span class="logoCarat">CARAT</span><span class="logoLive">Live</span>
+    <nav class="navbar">
+        <div class="logo">
+            <span class="logoCarat">CARAT</span><span class="logoLive">Live</span>
         </div>
         <div id="user-navbar">
-             <a href="index.php">HOME</a>
-             <a href="event.php">EVENTS</a>
-             <a href="contactus.php">CONTACT US</a>
-             <a href="aboutus.php">ABOUT US</a>
+            <a href="index.php">HOME</a>
+            <a href="event.php">EVENTS</a>
+            <a href="contactus.php">CONTACT US</a>
+            <a href="aboutus.php">ABOUT US</a>
         </div>
         <div></div>
         <div></div>
-   </nav>
+    </nav>
 </header>
 
 <body class="app">
@@ -60,7 +61,7 @@
                 <div style="text-align: center; margin-top: 10px;">
                     <a href="signup.html">Don't have an account? Sign Up</a>
                 </div>
-            </form> 
+            </form>
         </div>
     </div>
 
@@ -75,4 +76,8 @@
     }
     ?>
 </body>
+
 </html>
+<script>
+localStorage.clear();
+</script>
