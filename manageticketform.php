@@ -176,11 +176,11 @@ if (isset($_GET['event_id'])) {
                     <div class="form-container  form-container-col">
                         <div class="form-group form-group-col">
                             <label for="ticketprice">Price:</label>
-                            <input type="text" id="ticketprice" name="ticketprice">
+                            <input type="number" id="ticketprice" name="ticketprice">
                         </div>
                         <div class="form-group form-group-col">
                             <label for="ticketquantity">Quantity:</label>
-                            <input type="text" id="ticketquantity" name="ticketquantity">
+                            <input type="number" id="ticketquantity" name="ticketquantity">
                         </div>
                         <div class="form-group form-group-col">
                             <label for="section">Section:</label>
