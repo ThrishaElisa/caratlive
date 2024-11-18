@@ -92,7 +92,7 @@ function logout() {
 }
 
 function redirectToPage(page) {
-    if (page == 'profileform.php')
+    if (page == 'profileform.php' || 'historypurchased.php')
         page += `?user_id=${user.id}&mode=edit`;
 
     window.location.href = page;

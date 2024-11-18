@@ -31,6 +31,7 @@ JOIN
 WHERE 
     p.id = $purchase_id;";
     $result = mysqli_query($conn, $query); //run query
+    
     if (mysqli_num_rows($result) > 0) {
 
         $purchase = mysqli_fetch_assoc($result);

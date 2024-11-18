@@ -84,6 +84,7 @@ include('header.php');
 					<input type="text" name="paymentMethodH" id="paymentMethodH" />
 					<input type="text" name="event_id" id="event_id" />
 					<input type="text" name="ticket_id" id="ticket_id" />
+					<input type="text" name="user_id" id="user_id" />
 				</form>
 
 
@@ -134,6 +135,7 @@ include('header.php');
 					paymentMethod: paymentMethod,
 					event_id: event_id,
 					ticket_id: purchase.ticket_id,
+					user_id: user.id
 
 				};
 
@@ -150,6 +152,7 @@ include('header.php');
 				document.getElementById("paymentMethodH").value = data.paymentMethod;
 				document.getElementById("event_id").value = data.event_id;
 				document.getElementById("ticket_id").value = data.ticket_id;
+				document.getElementById("user_id").value = data.user_id;
 
 				document.getElementById("paymentForm").submit();
 

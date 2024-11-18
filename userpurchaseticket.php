@@ -14,10 +14,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $paymentMethod = $_POST['paymentMethodH'];
     $event_id = $_POST['event_id'];
     $ticket_id = $_POST['ticket_id'];
+    $user_id = $_POST['user_id'];
 
 
-    $sql = "INSERT INTO purchase (firstname, lastname, email, phone, address, ticket_id, event_id, ticketNum, totalprice, paymentMethod) 
-    VALUES ('$firstname', '$lastname', '$email', '$phone','$address', '$ticket_id', '$event_id', '$ticketNum','$totalprice', '$paymentMethod')";
+    $sql = "INSERT INTO purchase (firstname, lastname, email, phone, address, ticket_id, event_id, ticketNum, totalprice, paymentMethod, user_id) 
+    VALUES ('$firstname', '$lastname', '$email', '$phone','$address', '$ticket_id', '$event_id', '$ticketNum','$totalprice', '$paymentMethod', '$user_id')";
 
     // Execute the query
     if ($conn->query($sql) === TRUE) {
