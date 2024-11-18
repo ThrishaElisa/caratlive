@@ -32,7 +32,7 @@ $result = mysqli_query($conn, $query);
 ?>
 
 <body class="app">
-    <div style="display: flex; justify-content: center; height: 70vh; ">
+    <div style="display: flex; justify-content: center;">
         <div class="event-container" style="margin-top:50px; width:100%">
             <h2>Inquiries List</h2>
             <table>

@@ -11,8 +11,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $section = $_POST['section'];
     $event_id = $_POST['event_id'];
 
-    $sql = "INSERT INTO tickets (ticketname, ticketprice, ticketquantity, section, event_id) 
-            VALUES ('$ticketname', '$ticketprice', '$ticketquantity', '$section', '$event_id')";
+    $sql = "INSERT INTO tickets (ticketname, ticketprice, ticketquantity, section, event_id, remainingquantity) 
+            VALUES ('$ticketname', '$ticketprice', '$ticketquantity', '$section', '$event_id', $ticketquantity)";
 
     // Execute the query
     if ($conn->query($sql) === TRUE) {      

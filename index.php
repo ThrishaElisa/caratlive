@@ -26,9 +26,7 @@
 
     <!-- Main content -->
     <div class="slideshow-container">
-		<audio autoplay>
-			<source src="audiofile.mp3" type="audio/mpeg">
-		</audio>
+
         <div class="mySlides fade">
             <img src="assets/lany.png" alt="poster" style="width:100%">
         </div>
@@ -52,7 +50,19 @@
         </div>
         <button class="buttonSecondary">Find Events</button>
     </div>
-    <div class="card">
+    <div class="card" style="width:100%; ">
+        <h2>Our Pick for Song of the Week!</h2>
+        <div style="display: flex">
+ 
+            <div style="width:20%; ">
+                <h4>SEVENTEEN - Ash </h4> 
+            </div>
+            <audio id="audioPlayer" controls>
+                <source src="assets/ash.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+    </div>
+    <div class="card" style="margin-top:20px">
         <div class="cardTitleButton" style="margin-bottom:20px;padding-left: 6px">
             <h2>Upcoming Events</h2>
             <a href="event.php">View More..</a>
@@ -159,8 +169,7 @@
         </div>
     </div>
 
-<script>
-
+    <script>
     let slideIndex = 0;
     showSlides();
 
@@ -195,3 +204,12 @@
 </body>
 
 </html>
+
+<style>
+#audioPlayer {
+    width: 100%;
+    /* Full width player */
+    height: 40px;
+    /* Adjust height if needed */
+}
+</style>

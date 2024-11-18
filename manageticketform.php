@@ -91,6 +91,17 @@ if (isset($_GET['event_id'])) {
 
     $query = "SELECT * FROM tickets WHERE event_id = '$event_id'";
     $result = mysqli_query($conn, $query);
+
+    $queryEvent = "SELECT * FROM event WHERE event_id = '$event_id'";
+    $resultEvent = mysqli_query($conn, $queryEvent);
+
+    if(mysqli_num_rows($resultEvent) > 0){
+
+		$event = mysqli_fetch_assoc($resultEvent);
+
+	} else{
+		echo "Event not Found.";
+	}
 } 
 ?>
 
@@ -102,24 +113,60 @@ if (isset($_GET['event_id'])) {
         <div>
             <div class="cardTitleButton" style="padding-left: 6px; padding-bottom: 20px">
                 <h2>Manage Ticket Category</h2>
-                <button id="openModalBtn" class="buttonSecondary"><i style="color:white; padding-right:5px"
-                        class="fa-solid fa-plus"></i> Add Category</button>
+                <div>
+                    <button id="openModalBtn" class="buttonSecondary"><i style="color:white; padding-right:5px"
+                            class="fa-solid fa-plus"></i> Add Category</button>
+                </div>
+
             </div>
+            <?php 
+                if( !$event['seatmapimage']){
+            ?>
+            <form method="POST" action="uploadseatmap.php" enctype="multipart/form-data">
+                <input type="hidden" name="event_id" value="<?php echo $event_id; ?>">
+                <div class="form-group" style="width:50%; padding-bottom: 20px">
+                    <div style="display: flex; align-items: end; ">
+                        <div style="padding-right: 10px">
+                            <label for="image">Upload Seatmap Image:</label>
+                            <input type="file" name="image" id="image" accept=".jpg,.jpeg,.png,.gif"  onchange="toggleButton()">
+                        </div>
+
+                        <button class="buttonSecondary" id="uploadButton" disabled>Upload Image</button>
+                    </div>
+
+                </div>
+
+            </form>
+            <?php 
+               } else{
+               ?>
+            <div style="width:50%; padding-bottom: 20px; ">
+                <label>Uploaded Seatmap Image:</label>
+                <img  style="padding-top: 10px; " src="<?php echo $event['seatmapimage']; ?>" alt="seatmap" width="700" height="400">
+            </div>
+
+
+            <?php 
+               }
+            ?>
+            <?php
+                if (mysqli_num_rows($result) > 0) {
+                    $index=0;
+                    ?>
             <table>
+
                 <thead>
                     <tr>
                         <th>Ticket Name</th>
                         <th>Price</th>
                         <th>Quantity</th>
                         <th>Section</th>
-                        <th></th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                if (mysqli_num_rows($result) > 0) {
-                    $index=0;
 
+                    <?php
                     // Output data of each row
                     while ($row = mysqli_fetch_assoc($result)) {
                 ?>
@@ -128,9 +175,11 @@ if (isset($_GET['event_id'])) {
                         <td>RM <?php echo $row['ticketprice']?></td>
                         <td><?php echo $row['ticketquantity']?></td>
                         <td><?php echo $row['section']?></td>
-                        <td><a
+                        <td>
+                            <!-- <a
                                 onclick="editTicket('<?php echo $row['ticketname']?>','<?php echo $row['ticketprice']?>','<?php echo $row['ticketquantity']?>','<?php echo $row['section']?>','<?php echo $row['ticket_id']?>', '<?php echo $row['event_id']?>')"><i
-                                    style="color: purple; cursor: pointer" class="fa-solid fa-pen-to-square"></i></a> <a
+                                    style="color: purple; cursor: pointer" class="fa-solid fa-pen-to-square"></i></a> -->
+                                     <a
                                 onclick="confirmDelete('<?php echo $row['ticket_id']; ?>', '<?php echo $row['event_id']; ?>')"><i
                                     style="color: purple; cursor: pointer" class="fa-solid fa-trash"></i></a>
                         </td>
@@ -154,7 +203,6 @@ if (isset($_GET['event_id'])) {
 
     <!-- Modal -->
     <div id="addTicketModal" class="modal">
-
 
         <div class="modal-content card">
             <div class="modal-header">
@@ -198,6 +246,17 @@ if (isset($_GET['event_id'])) {
     const modal = document.getElementById('addTicketModal');
     const openModalBtn = document.getElementById('openModalBtn');
     const closeModalBtn = document.getElementById('closeModalBtn');
+
+    const fileInput = document.getElementById('image');
+    const uploadButton = document.getElementById('uploadButton');
+
+    function toggleButton() {
+        if (fileInput.files.length > 0) {
+            uploadButton.disabled = false; // Enable button when a file is selected
+        } else {
+            uploadButton.disabled = true; // Disable button when no file is selected
+        }
+    }
 
     // Open modal
     openModalBtn.addEventListener('click', () => {

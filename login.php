@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Email doesn't exist, set session error message
         $_SESSION['error'] = "Email not found.";
         header("Location: loginform.php");
-        exit();
+    
     } else {
         // Email exists, now check if the password is correct
         $row = mysqli_fetch_assoc($result);
