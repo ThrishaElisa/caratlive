@@ -14,18 +14,17 @@ include("db_connection.php");
 include('header.php');
 
 // Query to fetch all event
-if(isset($_GET['event_id'])){
+if (isset($_GET['event_id'])) {
 
 	$event_id = $_GET['event_id'];
 
 	$query = "SELECT * FROM event WHERE event_id = $event_id";
 	$result = mysqli_query($conn, $query); //run query
-
-	if(mysqli_num_rows($result) > 0){
+	if (mysqli_num_rows($result) > 0) {
 
 		$event = mysqli_fetch_assoc($result);
 
-	} else{
+	} else {
 		echo "Event not Found.";
 	}
 } else {

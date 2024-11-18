@@ -5,7 +5,7 @@ include 'db_connection.php';
 // Check if form data is sent via POST method
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES['image'])) {
     // Capture the data from the form
-    $eventname= $_POST['eventname'];
+    $eventname = $_POST['eventname'];
     $artistname = $_POST['artistname'];
     $date = $_POST['date'];
     $time = $_POST['time'];
@@ -24,6 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES['image'])) {
     $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
 
     $timeWithSeconds = $time . ":00"; // For example: '14:30:00'
+
 
     // Check if the image is of a valid type
     if (in_array($imageType, $allowedTypes)) {
