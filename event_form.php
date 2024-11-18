@@ -59,7 +59,7 @@ if (isset($_GET['event_id']) && isset($_GET['mode']) == 'edit') {
 
 <body class="app">
     <div style="display: flex; justify-content: center; align-items: center;">
-        <div class="admin-container" style="width: 700px">
+        <div class="admin-container" style="width: 700px; background: whitesmoke">
             <h2>Enter Event Details</h2>
             <form action="<?php echo ($mode == 'edit') ? 'eventedit.php' : 'eventadd.php'; ?>" method="POST"
                 onsubmit="return validateEventForm(event)" enctype="multipart/form-data">
