@@ -116,12 +116,20 @@ body {
 
 .card,
 .card-history,
-.event-container {
+.event-container, .manage-container {
   background-color: whitesmoke;
   padding: 30px;
   border-radius: 35px;
   margin-bottom: 10px;
   display: inline-block;
+}
+
+.manage-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 600px;
+  margin: auto;
 }
 
 .card-history {
@@ -592,10 +600,6 @@ textarea {
 .profile-details h2 {
   margin-bottom: 20px; /* Space below the heading */
   font-size: 30px;
-}
-
-.form-group {
-  margin-bottom: 15px; /* Space between form groups */
 }
 
 .date {
