@@ -63,15 +63,22 @@ WHERE
                         <?php
                         // Output data of each row
                         while ($row = mysqli_fetch_assoc($result)) {
+
+                            // Create a DateTime object from the date string
+                            $date = new DateTime($row['date']);
+
+                            // Get the day and month separately
+                            $dateFormat = $date->format('d F Y'); // Day (e.g., 24)
+                    
                             ?>
                             <tr>
                                 <td><?php echo $row['artistname'] ?></td>
                                 <td><?php echo $row['eventname'] ?></td>
                                 <td><?php echo $row['ticketname'] ?> - <?php echo $row['section'] ?> </td>
                                 <td><?php echo $row['location'] ?></td>
-                                <td><?php echo $row['date'] ?></td>
+                                <td><?php echo $dateFormat?></td>
                                 <td><a onclick="redirectToPage('receipt.php?purchase_id=<?php echo $row['id']; ?>&mode=view')"><i
-                                style="color: purple" class="fa-solid fa-eye"></i></a></td>
+                                            style="color: purple" class="fa-solid fa-eye"></i></a></td>
                             </tr>
                         <?php }
             } else { ?>

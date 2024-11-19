@@ -42,8 +42,14 @@ WHERE
 } else {
     echo "No Purchase ID provided.";
 }
+
+// Create a DateTime object from the date string
+$date = new DateTime($purchase['date']);
+
+// Get the day and month separately
+$dateFormat = $date->format('d F Y'); // Day (e.g., 24)
 ?>
-?>
+
 
 <body class="app">
     <div class="receipt-container" style="margin-top: 20px">
@@ -60,8 +66,8 @@ WHERE
             <strong>Event Name:</strong> <?php echo $purchase['artistname']; ?> -
             <?php echo $purchase['eventname']; ?><br>
             <strong>Location:</strong> <?php echo $purchase['location']; ?><br>
-            <strong>Date: </strong> <?php echo $purchase['date']; ?><br>
-            <strong>Time:</strong><?php echo $purchase['time']; ?><br>
+            <strong>Date: </strong> <?php echo $dateFormat ?><br>
+            <strong>Time:</strong><?php echo date("h:i A", strtotime($purchase['time'])); ?><br>
         </p>
 
         <hr>

@@ -48,7 +48,7 @@
             <input onkeydown="if (event.key === 'Enter') searchEvents()" type="text" class="input-field" name="keyword"
                 id="keyword" placeholder="Search Events by Artist Name or Event Name...">
         </div>
-        <button class="buttonSecondary">Find Events</button>
+        <button onclick="searchEvents()" class="buttonSecondary">Find Events</button>
     </div>
     <div class="card" style="width:100%; ">
         <h2>Our Pick for Song of the Week!</h2>

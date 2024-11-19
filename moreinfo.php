@@ -16,20 +16,28 @@ include('header.php');
 // Query to fetch all event
 if (isset($_GET['event_id'])) {
 
-	$event_id = $_GET['event_id'];
+    $event_id = $_GET['event_id'];
 
-	$query = "SELECT * FROM event WHERE event_id = $event_id";
-	$result = mysqli_query($conn, $query); //run query
-	if (mysqli_num_rows($result) > 0) {
+    $query = "SELECT * FROM event WHERE event_id = $event_id";
+    $result = mysqli_query($conn, $query); //run query
+    if (mysqli_num_rows($result) > 0) {
 
-		$event = mysqli_fetch_assoc($result);
+        $event = mysqli_fetch_assoc($result);
 
-	} else {
-		echo "Event not Found.";
-	}
+    } else {
+        echo "Event not Found.";
+    }
 } else {
-	echo "No event ID provided.";
+    echo "No event ID provided.";
 }
+?>
+
+<?php
+// Create a DateTime object from the date string
+$date = new DateTime($event['date']);
+
+// Get the day and month separately
+$dateFormat = $date->format('d F Y'); // Day (e.g., 24)
 ?>
 
 <body class="app">
@@ -39,9 +47,9 @@ if (isset($_GET['event_id'])) {
             <img src="<?php echo $event['image']; ?>" alt="poster" width="700" height="400">
             <div style="padding-left: 50px">
                 <p><i class="fa-solid fa-location-dot"></i><?php echo $event['location']; ?></p><br>
-                <p><i class="fa-solid fa-calendar-days"></i><?php echo $event['date']; ?></p>
+                <p><i class="fa-solid fa-calendar-days"></i><?php echo $dateFormat ?> </p>
                 </p><br>
-                <p><i class="fa-solid fa-clock"></i><?php echo $event['time']; ?></p><br>
+                <p><i class="fa-solid fa-clock"></i><?php echo date("h:i A", strtotime($event['time'])); ?></p><br>
                 <p><?php echo $event['description']; ?></p>
                 <div style="padding-top: 40px">
                     <a href="buynow.php?event_id=<?php echo $event_id; ?>">
@@ -59,9 +67,9 @@ if (isset($_GET['event_id'])) {
     </div>
 
     <script>
-    if (!user) {
-        document.getElementById('buy-button').style.display = 'none'; //make it disappear
-    } 
+        if (!user) {
+            document.getElementById('buy-button').style.display = 'none'; //make it disappear
+        } 
     </script>
 </body>
 
