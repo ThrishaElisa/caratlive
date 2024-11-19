@@ -45,7 +45,7 @@ if (isset($_GET['event_id'])) {
                 <p><?php echo $event['description']; ?></p>
                 <div style="padding-top: 40px">
                     <a href="buynow.php?event_id=<?php echo $event_id; ?>">
-                        <button class="buttonSecondary">Buy Tickets Now</button>
+                        <button id="buy-button" class="buttonSecondary">Buy Tickets Now</button>
                     </a>
                 </div>
             </div>
@@ -57,6 +57,12 @@ if (isset($_GET['event_id'])) {
 
         </div>
     </div>
+
+    <script>
+    if (!user) {
+        document.getElementById('buy-button').style.display = 'none'; //make it disappear
+    } 
+    </script>
 </body>
 
 </html>

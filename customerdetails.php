@@ -71,11 +71,11 @@ include('header.php');
 
 
 
-				<form id="paymentForm" action="userpurchaseticket.php" method="POST" style="display: none">
+				<form id="paymentForm" action="userpurchaseticket.php" method="POST">
 					<input type="text" name="firstnameH" id="firstnameH" />
 					<input type="text" name="lastnameH" id="lastnameH" />
 					<input type="email" name="emailH" id="emailH" />
-					<input type="tel" name="phoneH" id="phoneH" />
+					<input type="text" name="phoneH" id="phoneH" />
 					<input type="text" name="addressH" id="addressH" />
 					<input type="text" name="ticketnameH" id="ticketnameH" />
 					<input type="number" name="ticketNumH" id="ticketNumH" />
@@ -123,11 +123,11 @@ include('header.php');
 
 			if (paymentMethod) {
 				let data = {
-					firstname: user.firstname,
-					lastname: user.lastname,
-					email: user.email,
-					phone: "0" + user.phonenumber,
-					address: user.address,
+					firstname: document.getElementById("firstname").value ,
+					lastname: document.getElementById("lastname").value ,
+					email: document.getElementById("email").value ,
+					phone: document.getElementById("phone").value ,
+					address: document.getElementById("address").value ,
 					ticketname: purchase.ticketname,
 					ticketNum: purchase.ticketNum,
 					section: purchase.section,
@@ -152,7 +152,7 @@ include('header.php');
 				document.getElementById("paymentMethodH").value = data.paymentMethod;
 				document.getElementById("event_id").value = data.event_id;
 				document.getElementById("ticket_id").value = data.ticket_id;
-				document.getElementById("user_id").value = data.user_id;
+				document.getElementById("user_id").value = data.user_id;	
 
 				document.getElementById("paymentForm").submit();
 

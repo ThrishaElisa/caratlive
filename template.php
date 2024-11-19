@@ -96,9 +96,13 @@ if (isset($_GET['title'])) {
         }
 
         function redirectToPage(page) {
-            let params = new URLSearchParams(window.location.search);
-            let purchase_id = params.get('purchase_id');
-            window.location.href = page+"?purchase_id="+purchase_id;
+            if(page =='receipt.php'){
+                let params = new URLSearchParams(window.location.search);
+                let purchase_id = params.get('purchase_id');
+                page+= "?purchase_id="+purchase_id;
+            }
+        
+            window.location.href = page;
         }
 
     </script>

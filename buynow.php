@@ -116,6 +116,7 @@ if (isset($_GET['event_id'])) {
                         ?>
                     </select>
                     <select id="ticketNum" name="ticketNum">
+                         <option value="">Select Quantity</option>
                         <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
