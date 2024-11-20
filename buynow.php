@@ -50,7 +50,9 @@ if (isset($_GET['event_id'])) {
         }
         $groupedTickets = [];
         foreach ($data as $ticket) {
-            $groupedTickets[$ticket['ticketname']][] = $ticket;
+            if ($ticket['remainingquantity'] >= 1) {
+                $groupedTickets[$ticket['ticketname']][] = $ticket;
+            }
         }
 
     } else {
@@ -89,12 +91,55 @@ if (isset($_GET['event_id'])) {
                     No seat map available
                 </div>
             <?php } ?>
+
+            <div style="margin-left:20px; display: flex; align-items: center;">
+                <?php
+                if (mysqli_num_rows($result) > 0) {
+                    $index = 0;
+                    ?>
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Section</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Seats Available</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <?php
+                            // Output data of each row
+                            foreach ($data as $ticket) {
+                                ?>
+                                <tr>
+                                    <td><?php echo $ticket['section'] ?></td>
+                                    <td><?php echo $ticket['ticketname'] ?></td>
+                                    <td>RM <?php echo $ticket['ticketprice'] ?></td>
+                                    <td
+                                        style="<?php echo $ticket['remainingquantity'] === 0 ? 'color: red' : 'color: green'; ?>">
+                                        <?php echo $ticket['remainingquantity'] ?>
+                                    </td>
+
+
+                                </tr>
+                            <?php }
+                } else { ?>
+                            <div>
+                                No results
+                            </div>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <hr />
         <div style="display: flex; justify-content: center">
             <h1>Select Your Tickets</h1>
         </div>
+
         <div class="tickets">
             <p><em>*Ticket price excludes ticket fee and booking charges</em></p>
             <?php
@@ -115,18 +160,14 @@ if (isset($_GET['event_id'])) {
                         }
                         ?>
                     </select>
-                    <select id="ticketNum" name="ticketNum">
-                         <option value="">Select Quantity</option>
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                    </select>
                     <!-- Section Dropdown -->
-                    <select id="section" name="section" style="width:30%">
+                    <select id="section" name="section" style="width:30%" onchange="getAvailableSeats()">
                         <option value="">Select Section</option>
                     </select>
-                    
+                    <select id="ticketNum" name="ticketNum">
+                        <option value="">Select Quantity</option>
+                    </select>
+
                 </div>
                 <?php
 
@@ -182,29 +223,57 @@ if (isset($_GET['event_id'])) {
                     sectionDropdown.appendChild(option);
                 });
             }
+            getAvailableSeats();
+        }
+
+        function getAvailableSeats() {
+            var section = document.getElementById('section').value;
+            var ticketname = document.getElementById('ticketname').value;
+            var ticketNumDropdown = document.getElementById('ticketNum');
+
+            // Clear previous section options
+            ticketNumDropdown.innerHTML = '<option value="">Select Quantity</option>';
+            if (section !== "") {
+                var tickets = <?php echo json_encode($data); ?>;
+                let ticketSelected = tickets.find(ticket => ticket.section === section && ticket.ticketname === ticketname);
+                for (let i = 1; i < 4; i++) {
+                    if (i <= ticketSelected.remainingquantity) {
+                        var option = document.createElement("option");
+                        option.value = i;
+                        option.textContent = i;
+                        ticketNumDropdown.appendChild(option);
+                    }
+                }
+
+            }
         }
 
         function proceedToPayment() {
-
             let ticketname = document.getElementById('ticketname').value;
             let ticketNum = document.getElementById('ticketNum').value;
             let section = document.getElementById('section').value;
             if (ticketNum && ticketname && ticketNum > 0 && section) {
-
                 var data = <?php echo json_encode(value: $data); ?>;
 
-                let pricePerTicket = data.find(ticket => ticket.section === section);
+                let ticket = data.find(ticket => ticket.section === section);
+                if (ticketNum <= ticket.remainingquantity) {
 
-                localStorage.setItem('purchase', JSON.stringify({
-                    ticketname,
-                    ticketNum,
-                    section,
-                    pricePerTicket: pricePerTicket.ticketprice,
-                    ticket_id: pricePerTicket.ticket_id
 
-                }))
+                    let pricePerTicket = data.find(ticket => ticket.section === section);
 
-                window.location.href = "customerdetails.php?event_id=<?php echo $event_id; ?>";
+                    localStorage.setItem('purchase', JSON.stringify({
+                        ticketname,
+                        ticketNum,
+                        section,
+                        pricePerTicket: pricePerTicket.ticketprice,
+                        ticket_id: pricePerTicket.ticket_id
+
+                    }))
+                    window.location.href = "customerdetails.php?event_id=<?php echo $event_id; ?>";
+                } else {
+                    alert("Seats are not available.")
+                }
+
             } else {
                 alert("Please choose ticket that you would like to purchase")
             }
