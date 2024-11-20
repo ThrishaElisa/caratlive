@@ -174,7 +174,7 @@ if (isset($_GET['event_id'])) {
             } else {
                 ?>
                 <div style="padding:16px 0px 16px 0px;">
-                    No categories added
+                    No categories available
                 </div>
                 <?php
             }
