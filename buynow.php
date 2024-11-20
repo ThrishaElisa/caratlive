@@ -255,18 +255,15 @@ if (isset($_GET['event_id'])) {
             if (ticketNum && ticketname && ticketNum > 0 && section) {
                 var data = <?php echo json_encode(value: $data); ?>;
 
-                let ticket = data.find(ticket => ticket.section === section);
+                let ticket = data.find(ticket => ticket.section === section && ticket.ticketname === ticketname);
                 if (ticketNum <= ticket.remainingquantity) {
-
-
-                    let pricePerTicket = data.find(ticket => ticket.section === section);
 
                     localStorage.setItem('purchase', JSON.stringify({
                         ticketname,
                         ticketNum,
                         section,
-                        pricePerTicket: pricePerTicket.ticketprice,
-                        ticket_id: pricePerTicket.ticket_id
+                        pricePerTicket: ticket.ticketprice,
+                        ticket_id: ticket.ticket_id
 
                     }))
                     window.location.href = "customerdetails.php?event_id=<?php echo $event_id; ?>";

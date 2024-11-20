@@ -24,11 +24,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($conn->query($sql) === TRUE) {
          // Get the last inserted ID
          $last_inserted_id = $conn->insert_id;
-        $title = '?title=Success';
-        $description = '&description=Tickets+secured+successfully!';
-        $link = '&link=receipt.php';
-        $linkdesc = '&linkdesc=See+Receipt';
-        header("Location: template.php" . $title . $description . $link . $linkdesc. "&purchase_id=". $last_inserted_id);
+
+        // Update the remaining quantity in the ticket table
+        $updateSql = "UPDATE tickets SET remainingquantity = remainingquantity - $ticketNum WHERE ticket_id = '$ticket_id'";
+        if ($conn->query($updateSql) === TRUE) {
+            $title = '?title=Success';
+            $description = '&description=Tickets+secured+successfully!';
+            $link = '&link=receipt.php';
+            $linkdesc = '&linkdesc=See+Receipt';
+            header("Location: template.php" . $title . $description . $link . $linkdesc. "&purchase_id=". $last_inserted_id);
+        } else {
+            echo "<script>alert('Error updating remaining quantity: " . $updateSql . "<br>" . $conn->error . "');</script>";
+        }
     } else {
         echo "<script>alert('Error: " . $sql . "<br>" . $conn->error . "');</script>";
     }

@@ -71,7 +71,7 @@ include('header.php');
 
 
 
-				<form id="paymentForm" action="userpurchaseticket.php" method="POST">
+				<form id="paymentForm" action="userpurchaseticket.php" method="POST" style="display: none">
 					<input type="text" name="firstnameH" id="firstnameH" />
 					<input type="text" name="lastnameH" id="lastnameH" />
 					<input type="email" name="emailH" id="emailH" />
