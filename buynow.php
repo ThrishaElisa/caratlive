@@ -61,6 +61,12 @@ if (isset($_GET['event_id'])) {
 } else {
     echo "No event ID provided.";
 }
+
+// Create a DateTime object from the date string
+$date = new DateTime($purchase['date']);
+
+// Get the day and month separately
+$dateFormat = $date->format('d F Y'); // Day (e.g., 24)
 ?>
 
 <body class="app">
@@ -71,8 +77,8 @@ if (isset($_GET['event_id'])) {
             <div class="event-detail">
                 <h1><?php echo $event['artistname']; ?>: <?php echo $event['eventname']; ?></h1><br>
                 <p><i class="fa-solid fa-location-dot"></i> <?php echo $event['location']; ?></p><br>
-                <p><i class="fa-solid fa-calendar-days"></i> <?php echo $event['date']; ?></p><br>
-                <p><i class="fa-solid fa-clock"></i> <?php echo $event['time']; ?></p>
+                <p><i class="fa-solid fa-calendar-days"></i> <?php echo $dateFormat ?></p><br>
+                <p><i class="fa-solid fa-clock"></i><?php echo date("h:i A", strtotime($event['time'])); ?></p>
 
             </div>
         </div>
