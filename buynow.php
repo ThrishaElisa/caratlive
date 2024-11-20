@@ -195,16 +195,15 @@ $dateFormat = $date->format('d F Y'); // Day (e.g., 24)
             </div>
         <?php }
         ?>
-
-
-
     </div>
 
     <script>
-        localStorage.setItem('purchase', null)
-        document.getElementById('ticketname').value = ''
-        document.getElementById('ticketNum').value = ''
-        document.getElementById('section').value = ''
+        if ((<?php echo json_encode($groupedTickets); ?>).length > 0) {
+            localStorage.setItem('purchase', null)
+            document.getElementById('ticketname').value = ''
+            document.getElementById('ticketNum').value = ''
+            document.getElementById('section').value = ''
+        }
 
         function updateSections() {
             var ticketname = document.getElementById('ticketname').value;

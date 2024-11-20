@@ -78,7 +78,7 @@ $dateFormat = $date->format('d F Y'); // Day (e.g., 24)
                     <tr>
                         <th>Category</th>
                         <th>Quantity</th>
-                        <th>Price (RM)</th>
+                        <th>Price per Ticket (RM)</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -100,7 +100,7 @@ $dateFormat = $date->format('d F Y'); // Day (e.g., 24)
         <hr>
 
         <p class="receipt-total">
-            Subtotal: RM <?php echo $purchase['ticketprice']; ?><br>
+            Subtotal: RM <?php echo $purchase['ticketprice'] * $purchase['ticketNum']; ?><br>
             Fees:<span id="tax"><?php echo $purchase['ticketNum']; ?> x RM 20 </span><br>
             <strong>Total Price:</strong><?php echo $purchase['totalprice']; ?>
         </p>
