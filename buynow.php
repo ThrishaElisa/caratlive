@@ -63,7 +63,7 @@ if (isset($_GET['event_id'])) {
 }
 
 // Create a DateTime object from the date string
-$date = new DateTime($purchase['date']);
+$date = new DateTime($event['date']);
 
 // Get the day and month separately
 $dateFormat = $date->format('d F Y'); // Day (e.g., 24)
