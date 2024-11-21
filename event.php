@@ -21,7 +21,7 @@ if (isset($_GET['keyword'])) {
 	$keyword = "%" . mysqli_real_escape_string($conn, $keywordURL) . "%"; // Add wildcards to the keyword for LIKE
 
 	// Prepare a parameterized query
-	$query = "SELECT * FROM event WHERE artistname LIKE ? OR eventname LIKE ?";
+	$query = "SELECT * FROM event WHERE artistname LIKE ? OR eventname LIKE ? AND is_deleted = false";
 	$stmt = mysqli_prepare($conn, $query);
 
 	// Bind the keyword parameter to both placeholders
@@ -34,7 +34,7 @@ if (isset($_GET['keyword'])) {
 	$result = mysqli_stmt_get_result($stmt);
 } else {
 	// If no keyword is set, fetch all events without filtering
-	$query = "SELECT * FROM event";
+	$query = "SELECT * FROM event WHERE is_deleted = false";
 	$result = mysqli_query($conn, $query);
 }
 ?>
