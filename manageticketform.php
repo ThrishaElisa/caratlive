@@ -84,7 +84,7 @@
 <?php
 // Include database connection
 include("db_connection.php");
-$event_id='';
+$event_id = '';
 // Check if 'keyword' is set in the URL
 if (isset($_GET['event_id'])) {
     $event_id = $_GET['event_id'];
@@ -95,14 +95,14 @@ if (isset($_GET['event_id'])) {
     $queryEvent = "SELECT * FROM event WHERE event_id = '$event_id'";
     $resultEvent = mysqli_query($conn, $queryEvent);
 
-    if(mysqli_num_rows($resultEvent) > 0){
+    if (mysqli_num_rows($resultEvent) > 0) {
 
-		$event = mysqli_fetch_assoc($resultEvent);
+        $event = mysqli_fetch_assoc($resultEvent);
 
-	} else{
-		echo "Event not Found.";
-	}
-} 
+    } else {
+        echo "Event not Found.";
+    }
+}
 ?>
 
 <body class="app">
@@ -119,16 +119,17 @@ if (isset($_GET['event_id'])) {
                 </div>
 
             </div>
-            <?php 
-                if( !$event['seatmapimage']){
-            ?>
+            <?php
+            if (!$event['seatmapimage']) {
+                ?>
             <form method="POST" action="uploadseatmap.php" enctype="multipart/form-data">
                 <input type="hidden" name="event_id" value="<?php echo $event_id; ?>">
                 <div class="form-group" style="width:50%; padding-bottom: 20px">
                     <div style="display: flex; align-items: end; ">
                         <div style="padding-right: 10px">
                             <label for="image">Upload Seatmap Image:</label>
-                            <input type="file" name="image" id="image" accept=".jpg,.jpeg,.png,.gif"  onchange="toggleButton()">
+                            <input type="file" name="image" id="image" accept=".jpg,.jpeg,.png,.gif"
+                                onchange="toggleButton()">
                         </div>
 
                         <button class="buttonSecondary" id="uploadButton" disabled>Upload Image</button>
@@ -137,22 +138,23 @@ if (isset($_GET['event_id'])) {
                 </div>
 
             </form>
-            <?php 
-               } else{
-               ?>
+            <?php
+            } else {
+                ?>
             <div style="width:50%; padding-bottom: 20px; ">
                 <label>Uploaded Seatmap Image:</label>
-                <img  style="padding-top: 10px; " src="<?php echo $event['seatmapimage']; ?>" alt="seatmap" width="700" height="400">
+                <img style="padding-top: 10px; " src="<?php echo $event['seatmapimage']; ?>" alt="seatmap" width="700"
+                    height="400">
             </div>
 
 
-            <?php 
-               }
+            <?php
+            }
             ?>
             <?php
-                if (mysqli_num_rows($result) > 0) {
-                    $index=0;
-                    ?>
+            if (mysqli_num_rows($result) > 0) {
+                $index = 0;
+                ?>
             <table>
 
                 <thead>
@@ -167,27 +169,21 @@ if (isset($_GET['event_id'])) {
                 <tbody>
 
                     <?php
-                    // Output data of each row
-                    while ($row = mysqli_fetch_assoc($result)) {
-                ?>
+                        // Output data of each row
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            ?>
                     <tr>
-                        <td><?php echo $row['ticketname']?></td>
-                        <td>RM <?php echo $row['ticketprice']?></td>
-                        <td><?php echo $row['ticketquantity']?></td>
-                        <td><?php echo $row['section']?></td>
+                        <td><?php echo $row['ticketname'] ?></td>
+                        <td>RM <?php echo $row['ticketprice'] ?></td>
+                        <td><?php echo $row['ticketquantity'] ?></td>
+                        <td><?php echo $row['section'] ?></td>
                         <td>
-                            <!-- <a
-                                onclick="editTicket('<?php echo $row['ticketname']?>','<?php echo $row['ticketprice']?>','<?php echo $row['ticketquantity']?>','<?php echo $row['section']?>','<?php echo $row['ticket_id']?>', '<?php echo $row['event_id']?>')"><i
-                                    style="color: purple; cursor: pointer" class="fa-solid fa-pen-to-square"></i></a> -->
-                                     <a
-                                onclick="confirmDelete('<?php echo $row['ticket_id']; ?>', '<?php echo $row['event_id']; ?>')"><i
-                                    style="color: purple; cursor: pointer" class="fa-solid fa-trash"></i></a>
+                            <a onclick="confirmDelete('<?php echo $row['ticket_id']; ?>', '<?php echo $row['event_id']; ?>')"><i style="color: purple; cursor: pointer" class="fa-solid fa-trash"></i></a>
                         </td>
 
                     </tr>
                     <?php }
-                }
-                else { ?>
+            } else { ?>
                     <div>
                         No results
                     </div>
