@@ -89,10 +89,10 @@ $event_id = '';
 if (isset($_GET['event_id'])) {
     $event_id = $_GET['event_id'];
 
-    $query = "SELECT * FROM tickets WHERE event_id = '$event_id'";
+    $query = "SELECT * FROM tickets WHERE event_id = '$event_id' AND is_deleted = false";
     $result = mysqli_query($conn, $query);
 
-    $queryEvent = "SELECT * FROM event WHERE event_id = '$event_id'";
+    $queryEvent = "SELECT * FROM event WHERE event_id  = '$event_id'";
     $resultEvent = mysqli_query($conn, $queryEvent);
 
     if (mysqli_num_rows($resultEvent) > 0) {
